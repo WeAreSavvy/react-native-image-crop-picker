@@ -98,6 +98,8 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
     private final String DEFAULT_WIDGET_COLOR = "#03A9F4";
     private int width = 0;
     private int height = 0;
+    private int aspectRatioX = 0;
+    private int aspectRatioY = 0;
 
     private Uri mCameraCaptureURI;
     private String mCurrentMediaPath;
@@ -144,8 +146,8 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
         enableRotationGesture = options.hasKey("enableRotationGesture") && options.getBoolean("enableRotationGesture");
         disableCropperColorSetters = options.hasKey("disableCropperColorSetters") && options.getBoolean("disableCropperColorSetters");
         useFrontCamera = options.hasKey("useFrontCamera") && options.getBoolean("useFrontCamera");
-        aspectRatioX = options.hasKey("aspectRatioX") && options.getInt("aspectRatioX");
-        aspectRatioY = options.hasKey("aspectRatioY") && options.getInt("aspectRatioY");
+        aspectRatioX = options.hasKey("aspectRatioX") ? options.getInt("aspectRatioX") : 0;
+        aspectRatioY = options.hasKey("aspectRatioY") ? options.getInt("aspectRatioY") : 0;
         this.options = options;
     }
 
@@ -667,7 +669,7 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
                 .of(uri, Uri.fromFile(new File(this.getTmpDir(activity), UUID.randomUUID().toString() + ".jpg")))
                 .withOptions(options);
 
-        if (aspectRatioX && aspectRatioY) {
+        if (aspectRatioX > 0 && aspectRatioY > 0) {
             uCrop.withAspectRatio(aspectRatioX, aspectRatioY);
         } else if (width > 0 && height > 0) {
             uCrop.withAspectRatio(width, height);
