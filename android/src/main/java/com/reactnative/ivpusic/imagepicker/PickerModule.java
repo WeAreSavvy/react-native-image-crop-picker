@@ -144,6 +144,8 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
         enableRotationGesture = options.hasKey("enableRotationGesture") && options.getBoolean("enableRotationGesture");
         disableCropperColorSetters = options.hasKey("disableCropperColorSetters") && options.getBoolean("disableCropperColorSetters");
         useFrontCamera = options.hasKey("useFrontCamera") && options.getBoolean("useFrontCamera");
+        aspectRatioX = options.hasKey("aspectRatioX") && options.getInt("aspectRatioX");
+        aspectRatioY = options.hasKey("aspectRatioY") && options.getInt("aspectRatioY");
         this.options = options;
     }
 
@@ -665,7 +667,9 @@ class PickerModule extends ReactContextBaseJavaModule implements ActivityEventLi
                 .of(uri, Uri.fromFile(new File(this.getTmpDir(activity), UUID.randomUUID().toString() + ".jpg")))
                 .withOptions(options);
 
-        if (width > 0 && height > 0) {
+        if (aspectRatioX && aspectRatioY) {
+            uCrop.withAspectRatio(aspectRatioX, aspectRatioY);
+        } else if (width > 0 && height > 0) {
             uCrop.withAspectRatio(width, height);
         }
 
