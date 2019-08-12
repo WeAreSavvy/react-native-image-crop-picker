@@ -1,5 +1,29 @@
 # react-native-image-crop-picker
 
+WeAreSavvy fork of react-native-image-crop-picker.
+
+## Changes
+
+* Added `aspectRatioX` and `aspectRatioY` options to Android to specify crop ratio.
+* Forked from [JPig/react-native-image-cropped](https://github.com/JPig/react-native-image-crop-picker/commit/6cad1b8f5cd7dfba9655b4f7058e5e02f2749e7c) to add option to respect exif rotation data when selecting an image.
+
+## Android Cropping Ratio
+
+To set the aspect ratio the android cropper pass in the desired ratio options
+
+```js
+const options = {
+  cropping: true,
+  mediaType: 'photo',
+  aspectRatioX: 16,
+  aspectRatioY: 9
+}
+```
+
+---
+
+# react-native-image-crop-picker
+
 [![Backers on Open Collective](https://opencollective.com/react-native-image-crop-picker/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/react-native-image-crop-picker/sponsors/badge.svg)](#sponsors)
 
 <img src="svg.svg" width="50%" height="50%" />
